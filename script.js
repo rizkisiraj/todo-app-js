@@ -14,15 +14,30 @@ function deleteButton() {
 function createListItem() {
     var li = document.createElement("li");
     var delButton = document.createElement("button");
+    var theList = document.querySelector(".list");
+    var theDoneList = document.querySelector(".done");
     delButton.innerHTML = "<i class='fa-solid fa-trash-can'></i>";
     delButton.classList.add("delete-button");
     delButton.addEventListener("click", deleteButton);
-
     li.appendChild(document.createTextNode(input.value));
     li.appendChild(delButton);
     li.addEventListener("click", DoneList);
-    ul1.appendChild(li);
-    input.value = "";
+    if (theList) {
+        li.classList.add("list");
+        ul1.insertBefore(li, theList);
+        input.value = "";
+    }
+    else {
+        li.classList.add("list");
+        if (theDoneList) {
+            ul1.insertBefore(li, theDoneList);
+            input.value = "";
+        }
+        else {
+        ul1.appendChild(li);
+        input.value = "";
+        }
+    }
 }
 
 function AddListByClicking() {
@@ -41,6 +56,7 @@ function AddlistByKeypress(e) {
 function DoneList() {
     if (this.classList[0] !== "done") {
         this.classList.add("done");
+        this.classList.remove("list");
 
         newList = ul1.getElementsByClassName("done")[0];
         ul1.appendChild(newList);
@@ -48,4 +64,4 @@ function DoneList() {
 }
 
 input.addEventListener("keypress", AddlistByKeypress);
-button.addEventListener("click", AddListByClicking)
+button.addEventListener("click", AddListByClicking);

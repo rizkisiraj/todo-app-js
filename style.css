@@ -95,6 +95,11 @@ main #list-holder {
     background-color: #E74D3D;
 }
 
-.done {
+#list-holder .done {
     text-decoration: line-through;
+    background-color: #9c9c9c;
+}
+
+#list-holder .done button {
+    background-color: rgb(168, 60, 47);
 }
